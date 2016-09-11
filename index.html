@@ -4,19 +4,19 @@
     <title>Angular JS App - States Selector</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="./js/controllers/app.js"></script>
-    <script src="./js/controllers/States.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/States.js"></script>
 </head>
 <body>
 <div class="content" ng-controller="States">
     <nav class="content__navbar">
         <div class="container">
-            <input class="states__filter" type="text" placeholder="filter...">
+            <input ng-model="stateQuery" class="states__filter" type="text" placeholder="filter..." autofocus>
             <span class="state__selected">{{ selected }}</span>
         </div>
     </nav>
     <div class="states container">
-        <div class="state" ng-repeat="state in states" ng-click="select(state)">
+        <div class="state" ng-repeat="state in states | filter:stateQuery" ng-click="select(state)" ng-class="state.active">
             <div class="state__abbreviation">{{ state.abbreviation }}</div>
             <img class="state__flag" ng-src="images/{{ state.abbreviation | lowercase }}.png">
             <div class="state__name">{{ state.name }}</div>

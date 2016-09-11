@@ -5,5 +5,9 @@ app.controller('States', function States($scope, $http) {
     });
     $scope.select = function (state) {
         $scope.selected = state.name + ' (' + state.abbreviation + ')';
+        angular.forEach($scope.states, function (state) {
+            state.active = '';
+        });
+        state.active = 'active';
     }
 });
